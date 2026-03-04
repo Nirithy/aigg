@@ -108,21 +108,21 @@ AiGG/
 ### 阶段二：luaj库替换
 
 #### 任务2.1：删除旧的luaj库
-- [ ] 备份当前`luaj/`目录
-- [ ] 保留自定义类(如`GgLib.java`)
+- [x] 备份当前`luaj/`目录
+- [x] 保留自定义类(如`GgLib.java`)
 
 #### 任务2.2：集成luaj 3.0.2
-- [ ] 将`luaj302/src/core/org/luaj/`复制到项目
-- [ ] 调整包结构适配Android环境
-- [ ] 添加必要的JSE兼容类
+- [x] 将`luaj302/src/core/org/luaj/`复制到项目
+- [x] 调整包结构适配Android环境
+- [x] 添加必要的JSE兼容类
 
 #### 任务2.3：处理缺失类
 luaj 3.0.2中可能缺少的类(需要从JSE版本获取或自行实现)：
-- [ ] `Buffer.java` - 缓冲区类
-- [ ] `LuaInteger.java` - 整数类
-- [ ] `LuaUserdata.java` - 用户数据类
-- [ ] `Metatable.java` - 元表接口
-- [ ] `OrphanedThread.java` - 孤立线程
+- [x] `Buffer.java` - 缓冲区类
+- [x] `LuaInteger.java` - 整数类
+- [x] `LuaUserdata.java` - 用户数据类
+- [x] `Metatable.java` - 元表接口
+- [x] `OrphanedThread.java` - 孤立线程
 
 ---
 
