@@ -83,9 +83,25 @@ AiGG/
 - [x] 记录所有字段名映射关系
 
 #### 任务1.2：分析依赖关系
-- [ ] 分析GG修改器核心代码对luaj的依赖
-- [ ] 识别自定义扩展类(如GgLib)
-- [ ] 识别需要保留的自定义功能
+- [x] 分析GG修改器核心代码对luaj的依赖
+- [x] 识别自定义扩展类(如GgLib)
+- [x] 识别需要保留的自定义功能
+
+---
+
+### 任务1.2 分析结果
+#### 1. GG修改器核心代码对luaj的依赖
+- 核心依赖集中在 `android/ext/` 目录下（如 `Script.java` 及其大量内部类如 `Script$*`），共有数百处使用了 `import luaj.*`。
+- 依赖的核心类包括但不限于：`luaj.Globals`, `luaj.LuaValue`, `luaj.LuaTable`, `luaj.LuaString`, `luaj.LuaNumber`, `luaj.ap` (Varargs), `luaj.o` (LuaError), 和 `luaj.z` (TailcallVarargs)。
+
+#### 2. 自定义扩展类
+- `luaj.lib.GgLib` 和内部类 `luaj.lib.GgLib$saveVariable`：实现了GG修改器特有的 `gg.saveVariable` API 功能。
+- `luaj.lib.i`：一个自定义的 `FileOutputStream` 实现，用于受限的底层文件写入控制。
+
+#### 3. 需要保留的自定义功能
+- **文件 I/O 限制**：在 `Globals.java` 中的 `a(long)` 和 `a(String)` 方法控制了文件写入量和同时打开文件的数量限制。
+- **Lua 汇编器 (lasm) 支持**：在 `Globals.a(InputStream, String, String)` 中识别并组装 `lasm` 生成的二进制格式或文本代码。
+- **特有的系统库替换**：例如在 `Script.java` 中实例化的 `Script.IoLibSafe` 和 `Script.OsLibSafe`。
 
 ---
 
